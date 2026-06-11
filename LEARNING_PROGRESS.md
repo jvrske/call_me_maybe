@@ -55,7 +55,23 @@ SESSÃO 0 fechada. Aluno entendeu a analogia dos ímãs e a mecânica de logits:
 - Exemplo validado: logit 9 (inválido, mascarado) vs logit 4 (válido) -> sai o 4.
 - Termo correto introduzido: "máquina de estados" decide validade (não "parseamento").
 
-INICIANDO SESSÃO 1 — Fundamentos: tokens, logits, vocab + models.py + loader.
+SESSÃO 1 — PARTE TEÓRICA FEITA. Aluno entendeu e acertou:
+- token = tijolinho de texto (palavra/pedaço/símbolo); vocab = tabela token<->ID; logits = lista de notas (1 por token do vocab).
+- Índice do logits = ID do token; valor = nota/logit (quanto o modelo "quer" aquele token).
+- Ciclo de geração: ids -> get_logits_from_input_ids -> [NOSSO mascaramento, logits[id_invalido]=-inf] -> escolhe maior -> append -> repete.
+
+SESSÃO 1 — PARTE PRÁTICA (models.py): EM PAUSA, retomar AQUI.
+Já existe em src/models.py: ParamType (Literal) + ParameterSpec (só campo `type`, extra="forbid").
+Faltam 3 modelos pydantic a criar:
+  1. FunctionDefinition: name:str, description:str, parameters:dict[str,ParameterSpec], returns:ParameterSpec
+  2. FunctionCall (o que produzimos): name:str, parameters:dict[str, valor real]
+  3. PromptInput: prompt:str
+
+>>> PERGUNTA PENDENTE pro aluno (responder ao voltar, ANTES de escrever código):
+    Por que `parameters` é um dict[str, ParameterSpec] e nao uma list?
+    (dica: no functions_definition.json os params aparecem como chaves nomeadas "a","b"...)
+>>> TAREFA pendente: aluno escreve a classe FunctionDefinition sozinho (modo 1), eu reviso.
+    Depois seguimos pra FunctionCall, PromptInput, e o loader dos 2 JSONs (sessão 1/2).
 
 ## Estado do código (o que já existe no repo)
 
