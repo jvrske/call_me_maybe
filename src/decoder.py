@@ -72,7 +72,7 @@ def funnel_allowed_ids(vocab: dict[int, str], produced: str,
 
 
 class Decoder():
-    """constrained decoder: builds a valid function-call JSON
+    """Constrained decoder: builds a valid function-call JSON
     token by token."""
 
     def __init__(self, model: Small_LLM_Model, vocab: dict[int, str],
@@ -84,7 +84,7 @@ class Decoder():
         self.output = ""
 
     def emit(self, token_id: int) -> str:
-        """append one already-chosen token to the running ids/output."""
+        """Append one already-chosen token to the running ids/output."""
         text = self.vocab[token_id]
         self.ids.append(token_id)
         self.output += text
