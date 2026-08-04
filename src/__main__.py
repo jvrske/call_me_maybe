@@ -22,6 +22,9 @@ def main() -> None:
 
     try:
         functions = load_func_defs(args.functions_definition)
+        if not functions:
+            print("Error: no function definitions provided", file=sys.stderr)
+            sys.exit(1)
         prompts = load_prompts(args.input)
     except (FileNotFoundError, ValueError, ValidationError) as e:
         print(f"Error: {e}", file=sys.stderr)
